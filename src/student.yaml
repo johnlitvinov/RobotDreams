@@ -1,0 +1,18 @@
+student:
+  id: 22
+  name: Ivan
+  fullName: Lit
+  midlName: null
+  ageOfBirth: 1989
+  faculty: economy
+  campusAddress:
+    campusName: "Stanford University"
+    country: USA
+    postCode: 00991
+    roomNumber: 12
+    roommates: [John Lit, Stive Brown]
+  extraData:
+    nationality: BLR
+    placeOfBirth: Minsk
+    passportNumber: 22121989
+  vaccinated: false
