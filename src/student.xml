@@ -3,7 +3,7 @@
     <id>22</id>
     <name>Ivan</name>
     <fullName>Lit</fullName>
-    <midlName null="true"/>
+    <midlName></midlName>
     <ageOfBirth>1989</ageOfBirth>
     <campusAddress>
         <campusName> Stanford University</campusName>
