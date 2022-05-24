@@ -3,36 +3,48 @@ import java.util.*;
 
 public class Hometask_6 {
 
-    public static void main(String[] args)
-        {
-            ArrayList<String> mainLArray = new ArrayList<>();
-            mainLArray.add("мрия");
-            mainLArray.add("пап");
-            mainLArray.add("барабан");
-            mainLArray.add("чемодан");
-            mainLArray.add("Мадагаскар");
+    public static void main(String[] args) {
+        System.out.println(checkArray());
+    }
 
-            ArrayList<Character> finalResult = new ArrayList<>();
+    private static Set<Character> checkArray() {
 
-            for (int i = 0; i < mainLArray.size(); i++)
-            {
-                char[] arrayResult = mainLArray.get(i).toCharArray();
+        String[] arrayString = new String[]{"tur", "kip", "mama", "papa"};
 
-                ArrayList<Character> additionalArray = new ArrayList<>();
+        List<String> finalArray = new ArrayList<>();
+        HashMap<Character, Integer> keyValue = new HashMap<>();
 
-                for (int x = 0; x < arrayResult.length; x++)
-                {
-                    additionalArray.add(arrayResult[x]);
+
+        int numberString = 0;
+
+        for (String element : arrayString) {
+            boolean isThereEvenNumLetter = true;
+
+            if (element.length() % 2 == 0 && numberString < 2) {
+                char[] charWord = element.toCharArray();
+                char[] sortedCharWord = Arrays.copyOf(charWord, charWord.length);
+                Arrays.sort(sortedCharWord);
+
+                for (int i = 0; i < sortedCharWord.length; i = i + 2) {
+                    if (sortedCharWord[i] != sortedCharWord[i + 1]) {
+                        isThereEvenNumLetter = false;
+                        break;
+                    }
                 }
 
-                Set<Character> set = new HashSet<>();
-                set.addAll(additionalArray);
-
-                for (Character character : set)
-                {
-                    finalResult.add(character);
+                if (isThereEvenNumLetter) {
+                    finalArray.add(element);
+                    numberString++;
                 }
-                System.out.println(finalResult);
             }
         }
-    }//end class
+
+        for (String element : finalArray) {
+            char[] chars = element.toCharArray();
+            for (char ch : chars) {
+                keyValue.put(ch, (keyValue.getOrDefault(ch, 0)) + 1);
+            }
+        }
+        return keyValue.keySet();
+    } //end function
+}//end class
