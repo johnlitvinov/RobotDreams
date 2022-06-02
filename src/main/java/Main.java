@@ -41,10 +41,11 @@ public class Main {
         group.addTask(firstTask);
         group.addTask(secondTask);
 
-        //Done by students:
+        //add new student to the group
         group.addStudent(3,student3);
+
+        //Done task by students:
         group.markTaskAsDoneByStudent(firstTask,3);
-        System.out.println(group);
 
         group.markTaskAsDoneByStudent(secondTask,2);
         System.out.println(group);

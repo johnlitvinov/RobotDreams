@@ -54,8 +54,8 @@ public class Group {
         System.out.println("Добавлено задание: " + task);
     }
 
-    public void markTaskAsDoneByStudent(String task, int studentId){
-        Student student = students.get(studentId);
+    public void markTaskAsDoneByStudent(String task, int IdInGroup){
+        Student student = students.get(IdInGroup);
         student.setStudentTask(task, true);
     }
 
