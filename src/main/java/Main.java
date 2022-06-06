@@ -4,30 +4,31 @@ public class Main {
     public static void main(String[] args){
 
         //Create students,headOfGroup and group
-        Student headOfGroup = new Student(1, "TOM", "Hardman");
-        Student student1 = new Student(2, "Vanya", "Tomson");
-        Student student2 = new Student(3, "Taras", "Petrenko");
-        Student student3 = new Student(4, "Miron", "Lit");
-        Student student4 = new Student(5, "Vasya", "Pytrov");
-        Student student5 = new Student(6, "Kate", "Nike");
+        Student headOfGroup = new Student(0, "TOM", "Hardman");
+       // Student headOfGroup = null; //check null
+        Student student1 = new Student(1, "Vanya", "Tomson");
+        Student student2 = null;  //check null
+        Student student3 = new Student(3, "Miron", "Lit");
+        Student student4 = new Student(4, "Vasya", "Pytrov");
+        Student student5 = new Student(5, "Kate", "Nike");
 
         Group group = new Group(englishGroupName,headOfGroup);
         System.out.println(student1.toString());
         System.out.println(group.toString());
 
         //Add student to the group
-        group.addStudent(1,student4);
-        group.addStudent(2,student5);
+        group.addStudent(student4);
+        group.addStudent(student5);
         System.out.println(group.toString());
 
         //Rename student
         student4 = new Student(20,"Alex","Tik");
-        group.renameStudent(1, student4);
+        group.renameStudent(student4);
         System.out.println(student4.toString());
         System.out.println(group);
 
         //Remove student
-        group.removeStudent(1);
+        group.removeStudent(student4);
         System.out.println(group);
 
         //Change chiefOfGroup
@@ -42,12 +43,15 @@ public class Main {
         group.addTask(secondTask);
 
         //add new student to the group
-        group.addStudent(3,student3);
+        group.addStudent(student3);
 
         //Done task by students:
-        group.markTaskAsDoneByStudent(firstTask,3);
+        group.markTaskAsDoneByStudent(firstTask,student3);
 
-        group.markTaskAsDoneByStudent(secondTask,2);
+        group.markTaskAsDoneByStudent(secondTask,student5);
+        System.out.println(group);
+
+        group.setHeadOfGroup(student2); //check null
         System.out.println(group);
     }
 }//end class

@@ -10,42 +10,50 @@ public class Group {
     private Map<Integer, Student> students = new HashMap<>();
     private Set<String> tasks = new HashSet<>();
 
-    public Group(String name,Student headOfGroup) {
+    public Group(String name,Student cheifOfGroup) {
         this.name = name;
-        this.cheifOfGroup = headOfGroup;
+        this.cheifOfGroup = cheifOfGroup;
     }
 
-    public Student changeChief(Student cheifOfGroup){
-        System.out.println("---------Changed chief of the group-------------");
-        return this.cheifOfGroup = cheifOfGroup;
+    public Student getStudentOfGroup(int id) {
+        return students.get(id);
     }
 
-    public void addStudent(int idInGroup,Student student){
-        students.put(idInGroup,student);
+    public Student getCheifOfGroup() {
+        return cheifOfGroup;
+    }
+
+    void setHeadOfGroup(Student cheifOfGroup) {
+            this.cheifOfGroup = cheifOfGroup;
+    }
+
+    public void changeChief(Student student) {
+        if (!isStudentNull(cheifOfGroup)) {
+            setHeadOfGroup(getStudentOfGroup(student.getId()));
+        }
+    }
+
+    public void addStudent(Student student){
+        students.put(student.getId(),student);
         System.out.println("-------Added student to the group:----------- \n" +
-                "studentIdInGroup: "+idInGroup+"\n"+
                 "Student: \n"+student+"\n"+
                 "Group: \n"+students+"\n"+
                 "---------------------------------------------------------");
     }
 
-    public boolean removeStudent(int groupId){
-        if (isStudentInGroup(groupId)) {
-            students.remove(groupId);
-            System.out.println("Removed student from the group");
+    public boolean removeStudent(Student student){
+        if (isStudentExist(student)) {
+            students.remove(student.getId());
             return true;
         }
-        System.out.println("Can't Remove student from the group");
         return false;
     }
 
-    public boolean renameStudent(int groupId,Student student){
-        if (isStudentInGroup(groupId)) {
-            students.replace(groupId, student);
-            System.out.println("Rename student from the group");
+    public boolean renameStudent(Student student){
+        if (!isStudentNull(student)) {
+            students.replace(student.getId(), student);
             return true;
         }
-        System.out.println("Can't rename student from the group");
         return false;
     }
 
@@ -54,13 +62,31 @@ public class Group {
         System.out.println("Добавлено задание: " + task);
     }
 
-    public void markTaskAsDoneByStudent(String task, int IdInGroup){
-        Student student = students.get(IdInGroup);
-        student.setStudentTask(task, true);
+    public void markTaskAsDoneByStudent(String task, Student student){
+        if (!isStudentNull(student)) {
+            if (isStudentExist(student)) {
+                int studID = student.getId();
+                student = students.get(studID);
+                student.setStudentTask(task, true);
+            }
+        }
+    }
+
+    private boolean isStudentExist(Student student) {
+        return students.containsKey(student.getId()) & students.containsValue(student);
     }
 
     private boolean isStudentInGroup(int id) {
         return students.containsKey(id);
+    }
+
+    private boolean isStudentNull(Student student) {
+        if (student == null) {
+            System.out.println("Student is NULL!");
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
