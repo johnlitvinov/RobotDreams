@@ -15,11 +15,17 @@ public abstract class Person {
     public int getAge(){
         return age;
     }
+    public String getFirstName() {return firstName;}
+    public String getLastNAme() {return lastNAme;}
+
 
     // Setter int age;
     public void setAge(int age) {
         this.age = age;
     }
+    public void setFirstName(String firstName) {this.firstName = firstName;}
+    public void setLastNAme(String lastNAme){this.lastNAme = lastNAme;}
+
 
     public abstract boolean isRetired();
     public abstract String registerPartnership(Person personLastName);
