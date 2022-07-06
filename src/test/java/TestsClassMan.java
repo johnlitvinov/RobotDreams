@@ -3,47 +3,35 @@ import org.testng.annotations.Test;
 
 public class TestsClassMan {
 
-    @Test
-    public void testClassConstructor() {
-        Man man = new Man("Ivan", "Ivanov", 22, true);
+    @Test(dataProvider = "Constructor Method test data", dataProviderClass = ManClassDataProvider.class)
+    public void testClassConstructor(Man man) {
         Assert.assertNotNull(man);
     }
 
-    @Test (groups = "Getter")
-    public void testGetFirstName() {
-        Man man = new Man("Ivan", "Ivanov", 22, true);
-        Assert.assertEquals(man.firstName, "Ivan");
+    @Test (groups = "Getter", dataProvider = "Getter First Name test data", dataProviderClass = ManClassDataProvider.class)
+    public void testGetFirstName(Man man, String firstName) {
+        Assert.assertEquals(man.firstName, firstName);
     }
 
-    @Test (groups = "Setter")
-    public void testSetFirstName() {
-        Man man = new Man("Ivan", "Ivanov", 22, true);
-        man.setFirstName("NewIvan");
-        Assert.assertEquals(man.getFirstName(), "NewIvan");
+    @Test (groups = "Setter",dataProvider = "Method test data to check SETTER's", dataProviderClass = ManClassDataProvider.class)
+    public void testSetFirstName(Man man,String firstName) {
+        man.setFirstName(firstName);
+        Assert.assertEquals(man.getFirstName(), firstName);
     }
 
-    @Test (groups = "Getter")
-    public void testGetLastName(){
-        Man man = new Man("Ivan", "Ivanov", 22, true);
-        Assert.assertEquals(man.lastNAme, "Ivanov");
+    @Test (groups = "Getter",dataProvider = "Getter Last Name test data", dataProviderClass = ManClassDataProvider.class)
+    public void testGetLastName(Man man,String lastName){
+        Assert.assertEquals(man.getLastNAme(), lastName);
     }
 
-    @Test (groups = "Setter")
-    public void testSetLastName() {
-        Man man = new Man("Ivan", "Ivanov", 22, true);
-        man.setLastNAme("Petrov");
-        Assert.assertEquals(man.lastNAme, "Petrov");
+    @Test (groups = "Setter",dataProvider = "Method test data to check SETTER's", dataProviderClass = ManClassDataProvider.class)
+    public void testSetLastName(Man man, String lastName) {
+        man.setLastNAme(lastName);
+        Assert.assertEquals(man.getLastNAme(), lastName);
     }
 
-    @Test
-    public void testIsRetriedTrue() {
-        Man man = new Man("Ivan", "Ivanov", 66, true);
-        Assert.assertTrue(man.isRetired());
+    @Test(dataProvider = "IsRetried test data", dataProviderClass = ManClassDataProvider.class)
+    public void testIsRetried(Man man, boolean isRetried) {
+        Assert.assertEquals(man.isRetired(),isRetried);
     }
-
-    @Test
-    public void testIsRetriedFalse() {
-        Man man = new Man("Ivan", "Ivanov", 22, true);
-        Assert.assertFalse(man.isRetired());
-    }
-}
+}//end test class

@@ -3,52 +3,40 @@ import org.testng.annotations.Test;
 
 public class TestsClassWoman {
 
-    @Test
-    public void testClassConstructor() {
-        Woman woman = new Woman("Anna", "Ivanova", 61, true,"Petrova");
+    @Test (dataProvider = "Constructor Method test data", dataProviderClass = WomanClassDataProvider.class)
+    public void testClassConstructor(Woman woman) {
         Assert.assertNotNull(woman);
     }
 
-    @Test (groups = "Getter")
-    public void testGetFirstName() {
-        Woman woman = new Woman("Anna", "Ivanova", 61, true,"Petrova");
-        Assert.assertEquals(woman.getFirstName(), "Anna");
+    @Test (groups = "Getter",dataProvider = "Getter First Name test data", dataProviderClass = WomanClassDataProvider.class)
+    public void testGetFirstName(Woman woman,String firstName) {
+        Assert.assertEquals(woman.getFirstName(), firstName);
     }
 
-    @Test (groups = "Setter")
-    public void testSetFirstName() {
-        Woman woman = new Woman("Anna", "Ivanova", 61, true,"Petrova");
-        woman.setFirstName("NewAnna");
-        Assert.assertEquals(woman.getFirstName(), "NewAnna");
+    @Test (groups = "Setter",dataProvider = "Method test data to check SETTER's", dataProviderClass = WomanClassDataProvider.class)
+    public void testSetFirstName(Woman woman,String firstName) {
+        woman.setFirstName(firstName);
+        Assert.assertEquals(woman.getFirstName(), firstName);
     }
 
-    @Test (groups = "Getter")
-    public void testGetLastName(){
-        Woman woman = new Woman("Anna", "Ivanova", 61, true,"Petrova");
-        Assert.assertEquals(woman.getLastNAme(), "Ivanova");
+    @Test (groups = "Getter",dataProvider = "Getter Last Name test data", dataProviderClass = WomanClassDataProvider.class)
+    public void testGetLastName(Woman woman,String lastName){
+        Assert.assertEquals(woman.getLastNAme(), lastName);
     }
 
-    @Test (groups = "Setter")
-    public void testSetLastName() {
-        Woman woman = new Woman("Anna", "Ivanova", 61, true,"Petrova");
-        woman.setLastNAme("Petrova");
-        Assert.assertEquals(woman.getLastNAme(), "Petrova");
+    @Test (groups = "Setter",dataProvider = "Method test data to check SETTER's", dataProviderClass = WomanClassDataProvider.class)
+    public void testSetLastName(Woman woman,String lastName) {
+        woman.setLastNAme(lastName);
+        Assert.assertEquals(woman.getLastNAme(), lastName);
     }
 
-    @Test
-    public void testIsRetriedTrue() {
-        Woman woman = new Woman("Anna", "Ivanova", 61, true,"Petrova");
-        Assert.assertTrue(woman.isRetired());
-    }
-    @Test
-    public void testIsRetriedFalse() {
-        Woman woman = new Woman("Anna", "Ivanova", 59, true,"Petrova");
-        Assert.assertFalse(woman.isRetired());
+    @Test (dataProvider = "IsRetried test data", dataProviderClass = WomanClassDataProvider.class)
+    public void testIsRetriedTrue(Woman woman,boolean isRetried) {
+        Assert.assertEquals(woman.isRetired(),isRetried);
     }
 
-    @Test (groups = "Getter")
-    public void testGetMaidenName(){
-        Woman woman = new Woman("Anna", "Ivanova", 61, true,"Petrova");
-        Assert.assertEquals(woman.getMaidemName(), "Petrova");
+    @Test (groups = "Getter",dataProvider = "Getter Maiden Name test data", dataProviderClass = WomanClassDataProvider.class)
+    public void testGetMaidenName(Woman woman,String maidenName){
+        Assert.assertEquals(woman.getMaidemName(), maidenName);
     }
-}
+}//end test class
